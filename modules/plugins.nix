@@ -82,13 +82,13 @@ let
     content:
     let
       flat = lib.replaceStrings [ "\n" "\r" ] [ " " " " ] content;
-      match = builtins.match ".*runtimePackages[[:space:]]*=[[:space:]]*\\{([^}]*)\\}.*" flat;
+      match = builtins.match ".*runtimePackages[ \t]*=[ \t]*[{]([^}]*)[}].*" flat;
       tokens =
         if match == null then
           [ ]
         else
           lib.filter (token: builtins.isString token && token != "") (
-            builtins.split "[,\"[:space:]]+" (builtins.head match)
+            builtins.split "[,\" \t]+" (builtins.head match)
           );
     in
     map (name: lib.getAttrFromPath (lib.splitString "." name) pkgs) tokens;
