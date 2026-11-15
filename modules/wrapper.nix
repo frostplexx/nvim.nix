@@ -16,7 +16,7 @@
       prefix: ins:
       lib.pipe ins [
         builtins.attrNames
-        (builtins.filter (s: lib.hasPrefix prefix s))
+        (builtins.filter (s: lib.hasPrefix prefix s && (ins.${s}._type or null) != "flake"))
         (map (
           input:
           let

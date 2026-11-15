@@ -33,6 +33,15 @@ return {
             },
             color_overrides = {},
             custom_highlights = {},
+            auto_integrations = true,
+            integrations = {
+                cmp = true,
+                fzf = true,
+ mini = {
+            enabled = true,
+            indentscope_color = "",
+        },
+            },
         }
         vim.cmd.colorscheme "catppuccin"
     end,

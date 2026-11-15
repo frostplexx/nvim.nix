@@ -14,16 +14,40 @@
       url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
-    plugins-telescope = {
-      url = "github:nvim-telescope/telescope.nvim";
-      flake = false;
-    };
     plugins-catppuccin = {
       url = "github:catppuccin/nvim";
       flake = false;
     };
     plugins-yazi = {
       url = "github:mikavilpas/yazi.nvim";
+      flake = false;
+    };
+    plugins-fzf-lua = {
+      url = "github:ibhagwan/fzf-lua";
+      flake = false;
+    };
+    plugins-mini = {
+      url = "github:echasnovski/mini.nvim";
+      flake = false;
+    };
+    plugins-lspconfig = {
+      url = "github:neovim/nvim-lspconfig";
+      flake = false;
+    };
+    plugins-friendly-snippets = {
+      url = "github:rafamadriz/friendly-snippets";
+      flake = false;
+    };
+    plugins-conform = {
+      url = "github:stevearc/conform.nvim";
+      flake = false;
+    };
+    plugins-ts-error-translator = {
+      url = "github:dmmulroy/ts-error-translator.nvim";
+      flake = false;
+    };
+    plugins-render-markdown = {
+      url = "github:MeanderingProgrammer/render-markdown.nvim";
       flake = false;
     };
   };

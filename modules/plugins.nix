@@ -1,13 +1,21 @@
 { config, lib, inputs, pkgs, ... }:
 let
-  pluginNames = lib.pipe inputs [
+  pluginDir = ../plugins;
+  pluginFiles = builtins.readDir pluginDir;
+
+  inputPluginNames = lib.pipe inputs [
     builtins.attrNames
-    (builtins.filter (name: lib.hasPrefix "plugins-" name))
+    (builtins.filter (name: lib.hasPrefix "plugins-" name && (inputs.${name}._type or null) != "flake"))
     (map (name: lib.removePrefix "plugins-" name))
   ];
 
-  pluginDir = ../plugins;
-  pluginFiles = builtins.readDir pluginDir;
+  luaPluginNames = lib.pipe pluginFiles [
+    builtins.attrNames
+    (builtins.filter (file: lib.hasSuffix ".lua" file))
+    (map (file: lib.removeSuffix ".lua" file))
+  ];
+
+  pluginNames = lib.unique (inputPluginNames ++ luaPluginNames);
 
   luaFor =
     name:
@@ -22,6 +30,41 @@ let
   specOverrides = {
     lzn.lazy = false;
     plenary.lazy = false;
+    "friendly-snippets".lazy = false;
+    treesitter = {
+      pname = "treesitter";
+      data = pkgs.vimPlugins.nvim-treesitter.withPlugins (
+        plugins: with plugins; [
+          bash
+          c
+          cpp
+          css
+          fish
+          go
+          html
+          javascript
+          json
+          just
+          lua
+          markdown
+          markdown_inline
+          nix
+          python
+          query
+          rust
+          toml
+          tsx
+          typescript
+          vim
+          vimdoc
+          yaml
+        ]
+      );
+    };
+    "blink-cmp" = {
+      pname = "blink-cmp";
+      data = pkgs.vimPlugins.blink-cmp;
+    };
   };
 
   # Restricted parser: only a top-level `runtimePackages = { "a", "b" }`
@@ -42,7 +85,7 @@ let
     map (name: lib.getAttrFromPath (lib.splitString "." name) pkgs) tokens;
 
   registrationFor =
-    name: lua: ''
+    name: lua: /* lua */ ''
       do
         local pname = ${builtins.toJSON name}
         local spec = (function(pname)
@@ -76,11 +119,12 @@ let
   mkSpec =
     name:
     let
+      override = specOverrides.${name} or { };
       lua = luaFor name;
       runtimePkgs = if lua == null then [ ] else parseRuntimePackages lua;
     in
     {
-      data = config.nvim-lib.neovimPlugins.${name};
+      data = override.data or config.nvim-lib.neovimPlugins.${name};
       lazy = true;
     }
     // lib.optionalAttrs (runtimePkgs != [ ]) { inherit runtimePkgs; }

@@ -105,6 +105,70 @@
         "type": "github"
       }
     },
+    "plugins-conform": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786458409,
+        "narHash": "sha256-7VkQLpkDak/O5tphT/EWX/rE9r0Dd2UCF5CFbl4rK+A=",
+        "owner": "stevearc",
+        "repo": "conform.nvim",
+        "rev": "016802de402556da54c36bd7359b441266b01cdd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "conform.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-friendly-snippets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794177405,
+        "narHash": "sha256-9MFq/F4T6EzEcPtUHGUmMeqQU/wXjTvGZfMgpCCkRyA=",
+        "owner": "rafamadriz",
+        "repo": "friendly-snippets",
+        "rev": "7a1c9f7897a4eb078b157a04c7af81e5869215b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rafamadriz",
+        "repo": "friendly-snippets",
+        "type": "github"
+      }
+    },
+    "plugins-fzf-lua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794423780,
+        "narHash": "sha256-8guLpUWvqOH5f0GeUiTw5xyyWq1+IpYA6+SYXNsgDuU=",
+        "owner": "ibhagwan",
+        "repo": "fzf-lua",
+        "rev": "ded1c96d3d9d74634287d722431c26690968a4bf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ibhagwan",
+        "repo": "fzf-lua",
+        "type": "github"
+      }
+    },
+    "plugins-lspconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794658140,
+        "narHash": "sha256-QkvANnJdt8tZCfGS0afwfp7eCsUHOHV1lfvYInxjgFE=",
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "rev": "05588aab66016c6836634b87ca2d392d097515f2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "type": "github"
+      }
+    },
     "plugins-lzn": {
       "flake": false,
       "locked": {
@@ -118,6 +182,22 @@
       "original": {
         "owner": "lumen-oss",
         "repo": "lz.n",
+        "type": "github"
+      }
+    },
+    "plugins-mini": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794574099,
+        "narHash": "sha256-5cB1mUzamUTRP/+8KFACpyUKEORr59LrD1fxxoTyIUE=",
+        "owner": "echasnovski",
+        "repo": "mini.nvim",
+        "rev": "4d32e018f7cfcc0ba95357465516be615c542fef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "echasnovski",
+        "repo": "mini.nvim",
         "type": "github"
       }
     },
@@ -137,19 +217,35 @@
         "type": "github"
       }
     },
-    "plugins-telescope": {
+    "plugins-render-markdown": {
       "flake": false,
       "locked": {
-        "lastModified": 1794138463,
-        "narHash": "sha256-BuUst7wheKSL9dJztoB2zU1EFc90Q3YwdBCCNuNjF9c=",
-        "owner": "nvim-telescope",
-        "repo": "telescope.nvim",
-        "rev": "1e1bab730218eaf97fce743be3f56e51075928ac",
+        "lastModified": 1794555543,
+        "narHash": "sha256-kpA9eecmWt88+jZrb63t2dUuZRY3kxTRnqKfcl3JdXA=",
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "rev": "8801162e041e34c64d0d1397cd1f353a14b01950",
         "type": "github"
       },
       "original": {
-        "owner": "nvim-telescope",
-        "repo": "telescope.nvim",
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-ts-error-translator": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767484144,
+        "narHash": "sha256-kjZwfvb0B7GC4dBBSdgC/zRmCUCfCm4H5J+8SFzANJ4=",
+        "owner": "dmmulroy",
+        "repo": "ts-error-translator.nvim",
+        "rev": "558abff11b9e8f4cefc0de09df780c56841c7a4b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dmmulroy",
+        "repo": "ts-error-translator.nvim",
         "type": "github"
       }
     },
@@ -174,9 +270,15 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
         "plugins-catppuccin": "plugins-catppuccin",
+        "plugins-conform": "plugins-conform",
+        "plugins-friendly-snippets": "plugins-friendly-snippets",
+        "plugins-fzf-lua": "plugins-fzf-lua",
+        "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lzn": "plugins-lzn",
+        "plugins-mini": "plugins-mini",
         "plugins-plenary": "plugins-plenary",
-        "plugins-telescope": "plugins-telescope",
+        "plugins-render-markdown": "plugins-render-markdown",
+        "plugins-ts-error-translator": "plugins-ts-error-translator",
         "plugins-yazi": "plugins-yazi",
         "wrappers": "wrappers"
       }

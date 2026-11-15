@@ -6,7 +6,7 @@ vim.o.cmdheight = 0
 -- Interface
 vim.o.cursorline = true
 vim.o.list = true
-vim.o.listchars = 'tab:→ ,trail:●,nbsp:+,extends:›,precedes:‹'
+vim.o.listchars = 'tab:→ ,trail: ,nbsp:+,extends:›,precedes:‹'
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.ruler = false
