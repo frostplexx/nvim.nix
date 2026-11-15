@@ -6,7 +6,39 @@ return {
     },
     after = function()
         -- TODO: Properly set this up
-        require("mini.statusline").setup()
+        require("mini.statusline").setup({
+            content = {
+                active = function()
+                    local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = math.huge })
+                    local git = MiniStatusline.section_git({ trunc_width = 40 })
+                    local diff = MiniStatusline.section_diff({ trunc_width = 75 })
+                    local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+                    local filename = MiniStatusline.section_filename({ trunc_width = 140 })
+                    local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = math.huge })
+                    local location = MiniStatusline.section_location({ trunc_width = 75 })
+
+                    local clients = vim.lsp.get_clients({ bufnr = 0 })
+                    local lsp = ""
+                    if #clients > 0 then
+                        local names = {}
+                        for _, client in ipairs(clients) do
+                            names[#names + 1] = client.name
+                        end
+                        lsp = "󰰎 " .. table.concat(names, " ")
+                    end
+
+                    return MiniStatusline.combine_groups({
+                        { hl = mode_hl, strings = { mode } },
+                        { hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
+                        "%<",
+                        { hl = "MiniStatuslineFilename", strings = { filename } },
+                        "%=",
+                        { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+                        { hl = mode_hl, strings = { location } },
+                    })
+                end,
+            },
+        })
 
         require("mini.move").setup({
             mappings = {
@@ -25,7 +57,6 @@ return {
                 signs = { add = '┃', change = '┃', delete = '_' },
             },
         })
-        -- TODO: Figure out how to disable animation
         local indentscope = require("mini.indentscope")
         indentscope.setup({
             draw = {
