@@ -78,30 +78,6 @@ return {
             },
         })
 
-        local starter_cursor_hl
-        local starter_guicursor
-
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = "ministarter",
-            callback = function()
-                starter_cursor_hl = vim.api.nvim_get_hl(0, { name = "Cursor", link = false })
-                starter_guicursor = vim.o.guicursor
-                vim.api.nvim_set_hl(0, "Cursor", { blend = 100, fg = starter_cursor_hl.fg, bg = starter_cursor_hl.bg })
-                vim.o.guicursor = starter_guicursor .. ",a:Cursor/lCursor"
-            end,
-        })
-
-        vim.api.nvim_create_autocmd({ "BufLeave", "BufEnter" }, {
-            callback = function()
-                if vim.bo.filetype == "ministarter" or not starter_cursor_hl then
-                    return
-                end
-                vim.api.nvim_set_hl(0, "Cursor", starter_cursor_hl)
-                vim.o.guicursor = starter_guicursor
-                starter_cursor_hl = nil
-            end,
-        })
-
         require("mini.move").setup({
             mappings = {
                 left = "<S-h>",
