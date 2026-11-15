@@ -14,13 +14,14 @@ return {
             "telescope",
             winopts = {
                 backdrop = 100,
-                on_create = function()
-                    vim.wo.winblend = 15
-                end,
                 preview = {
                     border = "rounded",
                     winopts = {
-                        winblend = 0,
+                        winhl = {
+                            Normal = "Normal",
+                            NormalFloat = "Normal",
+                            FloatBorder = "FloatBorder",
+                        },
                     },
                 },
             },
