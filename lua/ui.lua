@@ -10,6 +10,24 @@ require('vim._core.ui2').enable({
   },
 })
 
+local ui2 = require('vim._core.ui2')
+local messages = require('vim._core.ui2.messages')
+local set_pos = messages.set_pos
+messages.set_pos = function(target, focus)
+  set_pos(target, focus)
+  local win = ui2.wins.msg
+  if (target == 'msg' or target == nil) and vim.api.nvim_win_is_valid(win) then
+    vim.api.nvim_win_set_config(win, {
+      relative = 'editor',
+      anchor = 'NE',
+      row = 1,
+      col = vim.o.columns,
+    })
+  end
+end
+
+vim.keymap.set('n', '<leader>n', '<cmd>messages<cr>', { desc = 'Notification history' })
+
 -- Interface
 vim.o.cursorline = true
 vim.o.list = true
