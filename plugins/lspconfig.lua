@@ -53,14 +53,11 @@ return {
           return
         end
 
-        local percent = value.percentage or 0
-        if percent <= 0 then
-          return
-        end
+        local percent = value.percentage
 
         frame = (frame % #frames) + 1
 
-        local is_running = value.kind ~= "end" and not (percent > 95 and percent <= 100)
+        local is_running = value.kind ~= "end" and not (percent and percent > 95 and percent <= 100)
 
         vim.api.nvim_echo({ { value.title or "LSP" } }, false, {
           id = ("lsp-progress-%s-%s"):format(data.client_id, tostring(params.token)),
