@@ -95,6 +95,7 @@ return {
 
         require("mini.icons").setup()
         require("mini.align").setup()
+        require("mini.bufremove").setup()
 
         local hipatterns = require("mini.hipatterns")
         hipatterns.setup({

@@ -33,6 +33,10 @@ end
 
 map("v", "<leader>s", 'y:%s/<C-r>"//gc<Left><Left><Left>', { desc = "Search and replace selected text" })
 
+map("n", "<leader>db", function()
+  require("mini.bufremove").delete(0, false)
+end, { desc = "Delete buffer" })
+
 map("n", "<leader>u", function()
   vim.cmd("packadd nvim.undotree")
   require("undotree").toggle()
