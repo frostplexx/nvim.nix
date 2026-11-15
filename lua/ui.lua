@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd('ColorScheme', { callback = set_msg_highlights })
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'msg',
   callback = function()
-    vim.wo.winhighlight = 'Normal:MsgArea,Search:,CurSearch:,IncSearch:'
+    vim.wo.winhighlight = 'Normal:MsgArea,NormalFloat:MsgArea,Search:,CurSearch:,IncSearch:'
   end,
 })
 
