@@ -18,6 +18,14 @@
       url = "github:nvim-telescope/telescope.nvim";
       flake = false;
     };
+    plugins-catppuccin = {
+      url = "github:catppuccin/nvim";
+      flake = false;
+    };
+    plugins-yazi = {
+      url = "github:mikavilpas/yazi.nvim";
+      flake = false;
+    };
   };
 
   outputs =

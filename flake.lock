@@ -89,6 +89,22 @@
         "type": "github"
       }
     },
+    "plugins-catppuccin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786257754,
+        "narHash": "sha256-EVTNyE0tkPAAgp55sHjxEGtY25sSqSs9nmI4liPJxm4=",
+        "owner": "catppuccin",
+        "repo": "nvim",
+        "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "plugins-lzn": {
       "flake": false,
       "locked": {
@@ -137,13 +153,31 @@
         "type": "github"
       }
     },
+    "plugins-yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794707399,
+        "narHash": "sha256-lPSvPeqwkEKr1QTEZwfsYQ8MJ48ckqKCRkP6tvHAymU=",
+        "owner": "mikavilpas",
+        "repo": "yazi.nvim",
+        "rev": "eb50c6a95fdf375caec06911f6d6fcb3abb1b172",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikavilpas",
+        "repo": "yazi.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
+        "plugins-catppuccin": "plugins-catppuccin",
         "plugins-lzn": "plugins-lzn",
         "plugins-plenary": "plugins-plenary",
         "plugins-telescope": "plugins-telescope",
+        "plugins-yazi": "plugins-yazi",
         "wrappers": "wrappers"
       }
     },
