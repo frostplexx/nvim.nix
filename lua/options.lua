@@ -1,5 +1,6 @@
 vim.o.clipboard = 'unnamedplus'
 vim.o.fileencoding = 'utf-8'
+vim.opt.shortmess:append('I')
 vim.g.editorconfig = true
 vim.g.loaded_netrwPlugin = 1
 

@@ -49,6 +49,24 @@ return {
             },
         })
 
+        require("mini.starter").setup({
+            header = function()
+                local version = vim.api.nvim_exec2("version", { output = true }).output:match("NVIM ([^\n]+)")
+                return table.concat({
+                    "│ ╲ ││",
+                    "││╲╲││",
+                    "││ ╲ │",
+                    "",
+                    "NVIM " .. (version or tostring(vim.version())),
+                }, "\n")
+            end,
+            items = {},
+            footer = "",
+            content_hooks = {
+                require("mini.starter").gen_hook.aligning("center", "center"),
+            },
+        })
+
         require("mini.move").setup({
             mappings = {
                 left = "<S-h>",
