@@ -89,35 +89,51 @@
         "type": "github"
       }
     },
-    "plugins-lze": {
+    "plugins-lzn": {
       "flake": false,
       "locked": {
-        "lastModified": 1794225074,
-        "narHash": "sha256-OCbpn6n/KlnhYoiYXV6EEeV/PS1WqLmzyz0lw/Q5qts=",
-        "owner": "BirdeeHub",
-        "repo": "lze",
-        "rev": "a7c2f81e3290f4b4f5e05b1dc550470289b7e34c",
+        "lastModified": 1794722329,
+        "narHash": "sha256-16LUQwA9fU3PfsWELmoynr53XDVbeSQuXqli1Z9hoiU=",
+        "owner": "lumen-oss",
+        "repo": "lz.n",
+        "rev": "b2ba4e3cc35faa44e5bb56e95dc63b3fa7642ca4",
         "type": "github"
       },
       "original": {
-        "owner": "BirdeeHub",
-        "repo": "lze",
+        "owner": "lumen-oss",
+        "repo": "lz.n",
         "type": "github"
       }
     },
-    "plugins-lzextras": {
+    "plugins-plenary": {
       "flake": false,
       "locked": {
-        "lastModified": 1794234292,
-        "narHash": "sha256-qfGSdmHXtch/RTuHmukRzLaXHV+QMCgEXrxvZaSuE90=",
-        "owner": "BirdeeHub",
-        "repo": "lzextras",
-        "rev": "0d997ade27f9a5cfa571c4727959ec805cbb4b28",
+        "lastModified": 1775800366,
+        "narHash": "sha256-nkfETDkPiE+Kd2BWYZijgUp9bP8RgFwRmvqJz2BMuq4=",
+        "owner": "nvim-lua",
+        "repo": "plenary.nvim",
+        "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
         "type": "github"
       },
       "original": {
-        "owner": "BirdeeHub",
-        "repo": "lzextras",
+        "owner": "nvim-lua",
+        "repo": "plenary.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-telescope": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794138463,
+        "narHash": "sha256-BuUst7wheKSL9dJztoB2zU1EFc90Q3YwdBCCNuNjF9c=",
+        "owner": "nvim-telescope",
+        "repo": "telescope.nvim",
+        "rev": "1e1bab730218eaf97fce743be3f56e51075928ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope.nvim",
         "type": "github"
       }
     },
@@ -125,8 +141,9 @@
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
-        "plugins-lze": "plugins-lze",
-        "plugins-lzextras": "plugins-lzextras",
+        "plugins-lzn": "plugins-lzn",
+        "plugins-plenary": "plugins-plenary",
+        "plugins-telescope": "plugins-telescope",
         "wrappers": "wrappers"
       }
     },

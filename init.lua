@@ -1,4 +1,8 @@
 vim.loader.enable() -- <- bytecode caching
+require('lz.n')
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 do
   -- Set up a global in a way that also handles non-nix compat
   local ok
@@ -20,3 +24,6 @@ do
     return nixInfo(nil, "plugins", "lazy", name) or nixInfo(nil, "plugins", "start", name)
   end
 end
+
+require('options')
+require('ui')

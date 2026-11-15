@@ -5,19 +5,21 @@
     wrappers.url = "github:nix-community/nix-wrapper-modules";
     wrappers.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    plugins-lzn = {
+      url = "github:lumen-oss/lz.n";
+      flake = false;
+    };
+    plugins-plenary = {
+      url = "github:nvim-lua/plenary.nvim";
+      flake = false;
+    };
+    plugins-telescope = {
+      url = "github:nvim-telescope/telescope.nvim";
+      flake = false;
+    };
   };
 
-  #TODO: Replace
-  # Demo on fetching plugins from outside nixpkgs
-  inputs.plugins-lze = {
-    url = "github:BirdeeHub/lze";
-    flake = false;
-  };
-  # These 2 are already in nixpkgs, however this ensures you always fetch the most up to date version!
-  inputs.plugins-lzextras = {
-    url = "github:BirdeeHub/lzextras";
-    flake = false;
-  };
   outputs =
     {
       self,
@@ -27,8 +29,16 @@
     }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
-      module = nixpkgs.lib.modules.importApply ./module.nix inputs;
-      wrapper = wrappers.lib.evalModule module;
+      module = {
+        imports = [
+          ./modules/wrapper.nix
+          ./modules/plugins.nix
+        ];
+      };
+      wrapper = wrappers.lib.evalModules {
+        specialArgs = { inherit inputs; };
+        modules = [ module ];
+      };
     in
     # for demonstration purposes, we will set up all the outputs.
     {
@@ -41,13 +51,11 @@
         default = self.wrappers.neovim;
       };
       overlays = {
-        neovim =
-          final: prev:
-          {
-            neovim = self.wrappers.neovim.wrap {
-              pkgs = prev.extend inputs.neovim-nightly-overlay.overlays.default;
-            };
+        neovim = final: prev: {
+          neovim = self.wrappers.neovim.wrap {
+            pkgs = prev.extend inputs.neovim-nightly-overlay.overlays.default;
           };
+        };
         default = self.overlays.neovim;
       };
       packages = forAllSystems (
@@ -72,6 +80,7 @@
         neovim = wrappers.lib.getInstallModule {
           name = "neovim";
           value = module;
+          specialArgs = { inherit inputs; };
         };
       };
       homeModules = {
