@@ -6,7 +6,6 @@ require('vim._core.ui2').enable({
   msg = {
     targets = {
       default = 'msg',
-      progress = 'msg',
     },
   },
 })
