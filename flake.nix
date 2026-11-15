@@ -10,6 +10,10 @@
       url = "github:lumen-oss/lz.n";
       flake = false;
     };
+    plugins-copilot = {
+      url = "github:zbirenbaum/copilot.lua";
+      flake = false;
+    };
     plugins-plenary = {
       url = "github:nvim-lua/plenary.nvim";
       flake = false;

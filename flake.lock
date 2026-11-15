@@ -105,6 +105,22 @@
         "type": "github"
       }
     },
+    "plugins-copilot": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794490455,
+        "narHash": "sha256-GIX1mOzsGWsSWLoUBFsTcaQv3zEM1BRhEfBYFq9YsoE=",
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "rev": "3547efbff9adeecbd9d431c0a2a8707b7f6a4131",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
     "plugins-friendly-snippets": {
       "flake": false,
       "locked": {
@@ -254,6 +270,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
         "plugins-catppuccin": "plugins-catppuccin",
+        "plugins-copilot": "plugins-copilot",
         "plugins-friendly-snippets": "plugins-friendly-snippets",
         "plugins-fzf-lua": "plugins-fzf-lua",
         "plugins-lspconfig": "plugins-lspconfig",
