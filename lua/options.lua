@@ -39,3 +39,13 @@ vim.o.virtualedit = 'block'
 vim.opt.diffopt:append({ 'algorithm:histogram', 'hiddenoff' })
 vim.opt.sessionoptions:remove({ 'blank', 'help', 'terminal' })
 vim.opt.shada:append({ 'rgitsigns:', 'rhealth:', 'rman:', 'rfile:///var/folders/' })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'lua',
+  callback = function()
+    vim.bo.expandtab = true
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.softtabstop = 4
+  end,
+})

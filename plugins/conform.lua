@@ -15,6 +15,11 @@ return {
   },
   after = function()
     require("conform").setup {
+      formatters = {
+        stylua = {
+          prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" },
+        },
+      },
       formatters_by_ft = {
         bash = { "shfmt" },
         c = { "clang-format" },
