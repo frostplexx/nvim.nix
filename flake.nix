@@ -10,6 +10,10 @@
       url = "github:lumen-oss/lz.n";
       flake = false;
     };
+    plugins-cord = {
+      url = "github:vyfor/cord.nvim";
+      flake = false;
+    };
     plugins-copilot = {
       url = "github:zbirenbaum/copilot.lua";
       flake = false;

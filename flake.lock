@@ -121,6 +121,22 @@
         "type": "github"
       }
     },
+    "plugins-cord": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786903686,
+        "narHash": "sha256-lsPhC0OqhSuwz96j9LfQqrV8h20HaTMW7TDbn9nPZ7Q=",
+        "owner": "vyfor",
+        "repo": "cord.nvim",
+        "rev": "85f295e43550bc968b66d95d8bfd6e12bb17df08",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vyfor",
+        "repo": "cord.nvim",
+        "type": "github"
+      }
+    },
     "plugins-friendly-snippets": {
       "flake": false,
       "locked": {
@@ -271,6 +287,7 @@
         "nixpkgs": "nixpkgs_2",
         "plugins-catppuccin": "plugins-catppuccin",
         "plugins-copilot": "plugins-copilot",
+        "plugins-cord": "plugins-cord",
         "plugins-friendly-snippets": "plugins-friendly-snippets",
         "plugins-fzf-lua": "plugins-fzf-lua",
         "plugins-lspconfig": "plugins-lspconfig",

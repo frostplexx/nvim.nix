@@ -41,11 +41,26 @@ vim.opt.sessionoptions:remove({ 'blank', 'help', 'terminal' })
 vim.opt.shada:append({ 'rgitsigns:', 'rhealth:', 'rman:', 'rfile:///var/folders/' })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'lua',
-  callback = function()
-    vim.bo.expandtab = true
-    vim.bo.shiftwidth = 4
-    vim.bo.tabstop = 4
-    vim.bo.softtabstop = 4
-  end,
+    pattern = 'lua',
+    callback = function()
+        vim.bo.expandtab = true
+        vim.bo.shiftwidth = 4
+        vim.bo.tabstop = 4
+        vim.bo.softtabstop = 4
+    end,
 })
+
+
+vim.g.loaded_netrwPlugin = 1
+
+vim.keymap.set(
+    "v",
+    "<leader>s",
+    'y:%s/<C-r>"//gc<Left><Left><Left>',
+    { desc = "Search and replace selected text across file" }
+)
+
+vim.keymap.set("n", "<leader>u", function()
+    vim.cmd("packadd nvim.undotree")
+    require("undotree").toggle()
+end)
