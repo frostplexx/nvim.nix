@@ -1,7 +1,15 @@
--- Enable new experimental UI2
-require('vim._core.ui2').enable()
-
 vim.o.cmdheight = 0
+
+-- Enable new experimental UI2
+require('vim._core.ui2').enable({
+  enable = true,
+  msg = {
+    targets = {
+      default = 'msg',
+      progress = 'msg',
+    },
+  },
+})
 
 -- Interface
 vim.o.cursorline = true
