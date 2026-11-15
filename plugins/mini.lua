@@ -9,8 +9,7 @@ return {
         require("mini.statusline").setup({
             content = {
                 active = function()
-                    local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 0 })
-                    mode = mode:upper()
+                    local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = math.huge })
 
                     local git = MiniStatusline.section_git({ trunc_width = 40, icon = "•" })
                     local diff = MiniStatusline.section_diff({ trunc_width = 75 })
