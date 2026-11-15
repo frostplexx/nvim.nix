@@ -18,6 +18,7 @@ return {
 
         require('mini.statuscolumn').setup()
         require('mini.git').setup()
+        require('mini.diff').setup()
         -- TODO: Figure out how to disable animation
         local indentscope = require("mini.indentscope")
         indentscope.setup({
