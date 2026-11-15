@@ -1,5 +1,8 @@
 return {
     lazy = false,
+    runtimePackages = {
+        "git",
+    },
     after = function()
         -- TODO: Properly set this up
         require("mini.statusline").setup()
@@ -14,7 +17,7 @@ return {
         })
 
         require('mini.statuscolumn').setup()
-
+        require('mini.git').setup()
         -- TODO: Figure out how to disable animation
         local indentscope = require("mini.indentscope")
         indentscope.setup({
