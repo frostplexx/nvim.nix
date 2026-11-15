@@ -109,13 +109,9 @@ return {
           render()
         else
           timer:stop()
-          vim.api.nvim_echo({ { "LSP" } }, false, {
-            id = message_id,
-            kind = "progress",
-            status = "success",
-            title = frames[frame] .. " LSP",
-            source = "lsp-progress",
-          })
+          pcall(function()
+            require("vim._core.ui2.messages").msg:clear()
+          end)
         end
       end,
     })
