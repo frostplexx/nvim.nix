@@ -1,5 +1,6 @@
 return {
     lazy = false,
+    setup = false,
     runtimePackages = {
         "git",
     },
