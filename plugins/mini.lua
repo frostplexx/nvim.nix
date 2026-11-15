@@ -89,6 +89,8 @@ return {
 
         local function set_statusline_highlights()
             vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { bg = "NONE" })
+            local inactive = vim.api.nvim_get_hl(0, { name = "MiniStatuslineInactive" })
+            vim.api.nvim_set_hl(0, "MiniStatuslineInactive", { fg = inactive.fg, bg = "NONE" })
         end
         set_statusline_highlights()
         vim.api.nvim_create_autocmd("ColorScheme", { callback = set_statusline_highlights })
