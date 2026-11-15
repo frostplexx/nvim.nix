@@ -9,13 +9,16 @@ return {
         require("mini.statusline").setup({
             content = {
                 active = function()
-                    local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = math.huge })
-                    local git = MiniStatusline.section_git({ trunc_width = 40 })
+                    local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 0 })
+                    mode = mode:upper()
+
+                    local git = MiniStatusline.section_git({ trunc_width = 40, icon = "•" })
                     local diff = MiniStatusline.section_diff({ trunc_width = 75 })
-                    local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-                    local filename = MiniStatusline.section_filename({ trunc_width = 140 })
-                    local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = math.huge })
-                    local location = MiniStatusline.section_location({ trunc_width = 75 })
+                    local diagnostics = MiniStatusline.section_diagnostics({
+                        trunc_width = 75,
+                        icon = "",
+                        signs = { ERROR = "󰅙", WARN = "", INFO = "", HINT = "󰌵" },
+                    })
 
                     local clients = vim.lsp.get_clients({ bufnr = 0 })
                     local lsp = ""
@@ -24,17 +27,24 @@ return {
                         for _, client in ipairs(clients) do
                             names[#names + 1] = client.name
                         end
-                        lsp = "󰰎 " .. table.concat(names, " ")
+                        lsp = " " .. table.concat(names, ", ")
                     end
+
+                    local filetype_icon = require("mini.icons").get("filetype", vim.bo.filetype)
+                    local filename = "%t%m%r"
+
+                    local progress = math.floor(vim.fn.line(".") / math.max(1, vim.fn.line("$")) * 100) .. "%%"
+                    local time = os.date("%H:%M")
+                    local fileformat = ({ unix = "", dos = "", mac = "" })[vim.bo.fileformat] or ""
 
                     return MiniStatusline.combine_groups({
                         { hl = mode_hl, strings = { mode } },
-                        { hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
+                        { hl = "MiniStatuslineDevinfo", strings = { filetype_icon, filename } },
                         "%<",
-                        { hl = "MiniStatuslineFilename", strings = { filename } },
+                        { hl = "MiniStatuslineFilename", strings = { diff } },
                         "%=",
-                        { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
-                        { hl = mode_hl, strings = { location } },
+                        { hl = "MiniStatuslineDevinfo", strings = { lsp, diagnostics } },
+                        { hl = "MiniStatuslineFileinfo", strings = { git, progress, time, fileformat } },
                     })
                 end,
             },
@@ -57,6 +67,7 @@ return {
                 signs = { add = '┃', change = '┃', delete = '_' },
             },
         })
+        -- TODO: Figure out how to disable animation
         local indentscope = require("mini.indentscope")
         indentscope.setup({
             draw = {
