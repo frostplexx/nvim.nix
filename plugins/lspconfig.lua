@@ -43,6 +43,34 @@ return {
 
     local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
     local frame = 0
+    local active = {}
+    local timer = vim.uv.new_timer()
+
+    local function render()
+      frame = (frame % #frames) + 1
+      for id, item in pairs(active) do
+        vim.api.nvim_echo({ { item.title } }, false, {
+          id = id,
+          kind = "progress",
+          status = "running",
+          percent = item.percent,
+          title = frames[frame] .. " LSP",
+          source = "lsp-progress",
+        })
+      end
+    end
+
+    local function ensure_timer()
+      if not timer:is_active() then
+        timer:start(0, 80, vim.schedule_wrap(render))
+      end
+    end
+
+    local function stop_timer()
+      if next(active) == nil and timer:is_active() then
+        timer:stop()
+      end
+    end
 
     vim.api.nvim_create_autocmd("LspProgress", {
       callback = function(event)
@@ -53,20 +81,30 @@ return {
           return
         end
 
-        local percent = value.percentage
+        local id = ("lsp-progress-%s-%s"):format(data.client_id, tostring(params.token))
+        local item = active[id]
+        local title = value.title or (item and item.title) or "LSP"
 
-        frame = (frame % #frames) + 1
+        if value.kind == "end" then
+          active[id] = nil
+          vim.api.nvim_echo({ { title } }, false, {
+            id = id,
+            kind = "progress",
+            status = "success",
+            percent = value.percentage,
+            title = frames[frame] .. " LSP",
+            source = "lsp-progress",
+          })
+          stop_timer()
+          return
+        end
 
-        local is_running = value.kind ~= "end" and not (percent and percent > 95 and percent <= 100)
-
-        vim.api.nvim_echo({ { value.title or "LSP" } }, false, {
-          id = ("lsp-progress-%s-%s"):format(data.client_id, tostring(params.token)),
-          kind = "progress",
-          status = is_running and "running" or "success",
-          percent = percent,
-          title = frames[frame] .. " LSP",
-          source = "lsp-progress",
-        })
+        active[id] = {
+          title = title,
+          percent = value.percentage or (item and item.percent),
+        }
+        ensure_timer()
+        render()
       end,
     })
 

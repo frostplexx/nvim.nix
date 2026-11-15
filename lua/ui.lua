@@ -26,6 +26,13 @@ messages.set_pos = function(target, focus)
   end
 end
 
+local function set_msg_highlights()
+  local normal = vim.api.nvim_get_hl(0, { name = 'Normal' })
+  vim.api.nvim_set_hl(0, 'MsgArea', { fg = normal.fg, bg = 'NONE' })
+end
+set_msg_highlights()
+vim.api.nvim_create_autocmd('ColorScheme', { callback = set_msg_highlights })
+
 vim.keymap.set('n', '<leader>n', '<cmd>messages<cr>', { desc = 'Notification history' })
 
 -- Interface
