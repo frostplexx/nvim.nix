@@ -33,6 +33,13 @@ end
 set_msg_highlights()
 vim.api.nvim_create_autocmd('ColorScheme', { callback = set_msg_highlights })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'msg',
+  callback = function()
+    vim.wo.winhighlight = 'Normal:MsgArea,Search:,CurSearch:,IncSearch:'
+  end,
+})
+
 vim.keymap.set('n', '<leader>n', '<cmd>messages<cr>', { desc = 'Notification history' })
 
 -- Interface

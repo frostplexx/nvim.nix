@@ -44,31 +44,40 @@ return {
     local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
     local frame = 0
     local active = {}
+    local seq = 0
+    local message_id = "lsp-progress"
     local timer = vim.uv.new_timer()
 
-    local function render()
-      frame = (frame % #frames) + 1
-      for id, item in pairs(active) do
-        vim.api.nvim_echo({ { item.title } }, false, {
-          id = id,
-          kind = "progress",
-          status = "running",
-          percent = item.percent,
-          title = frames[frame] .. " LSP",
-          source = "lsp-progress",
-        })
+    local function current()
+      local best
+      for _, item in pairs(active) do
+        if not best or item.seq > best.seq then
+          best = item
+        end
       end
+      return best
+    end
+
+    local function render()
+      local item = current()
+      if not item then
+        return
+      end
+
+      frame = (frame % #frames) + 1
+      vim.api.nvim_echo({ { item.title } }, false, {
+        id = message_id,
+        kind = "progress",
+        status = "running",
+        percent = item.percent,
+        title = frames[frame] .. " LSP",
+        source = "lsp-progress",
+      })
     end
 
     local function ensure_timer()
       if not timer:is_active() then
         timer:start(0, 80, vim.schedule_wrap(render))
-      end
-    end
-
-    local function stop_timer()
-      if next(active) == nil and timer:is_active() then
-        timer:stop()
       end
     end
 
@@ -81,30 +90,33 @@ return {
           return
         end
 
-        local id = ("lsp-progress-%s-%s"):format(data.client_id, tostring(params.token))
+        local id = ("%s:%s"):format(data.client_id, tostring(params.token))
         local item = active[id]
-        local title = value.title or (item and item.title) or "LSP"
 
         if value.kind == "end" then
           active[id] = nil
-          vim.api.nvim_echo({ { title } }, false, {
-            id = id,
+        else
+          seq = seq + 1
+          active[id] = {
+            title = value.title or (item and item.title) or "LSP",
+            percent = value.percentage or (item and item.percent),
+            seq = seq,
+          }
+        end
+
+        if next(active) then
+          ensure_timer()
+          render()
+        else
+          timer:stop()
+          vim.api.nvim_echo({ { "LSP" } }, false, {
+            id = message_id,
             kind = "progress",
             status = "success",
-            percent = value.percentage,
             title = frames[frame] .. " LSP",
             source = "lsp-progress",
           })
-          stop_timer()
-          return
         end
-
-        active[id] = {
-          title = title,
-          percent = value.percentage or (item and item.percent),
-        }
-        ensure_timer()
-        render()
       end,
     })
 
