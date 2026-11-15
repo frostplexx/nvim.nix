@@ -1,8 +1,13 @@
 {
   description = "Flake exporting a configured neovim package";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  inputs.wrappers.url = "github:nix-community/nix-wrapper-modules";
-  inputs.wrappers.inputs.nixpkgs.follows = "nixpkgs";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    wrappers.url = "github:nix-community/nix-wrapper-modules";
+    wrappers.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+  };
+
+  #TODO: Replace
   # Demo on fetching plugins from outside nixpkgs
   inputs.plugins-lze = {
     url = "github:BirdeeHub/lze";
@@ -36,7 +41,13 @@
         default = self.wrappers.neovim;
       };
       overlays = {
-        neovim = final: prev: { neovim = self.wrappers.neovim.wrap { pkgs = final; }; };
+        neovim =
+          final: prev:
+          {
+            neovim = self.wrappers.neovim.wrap {
+              pkgs = prev.extend inputs.neovim-nightly-overlay.overlays.default;
+            };
+          };
         default = self.overlays.neovim;
       };
       packages = forAllSystems (
