@@ -14,28 +14,6 @@ return {
             "telescope",
             winopts = {
                 backdrop = 100,
-                preview = {
-                    border = "rounded",
-                    winopts = {
-                        winhl = {
-                            Normal = "Normal",
-                            NormalFloat = "Normal",
-                            FloatBorder = "FloatBorder",
-                        },
-                    },
-                },
-            },
-            hls = {
-                normal = "Normal",
-                preview_normal = "Normal",
-                help_normal = "Normal",
-                border = "FloatBorder",
-                preview_border = "FloatBorder",
-            },
-            fzf_colors = {
-                ["bg"] = "-1",
-                ["bg+"] = "-1",
-                ["gutter"] = "-1",
             },
         })
     end
