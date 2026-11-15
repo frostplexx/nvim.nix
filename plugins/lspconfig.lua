@@ -41,27 +41,34 @@ return {
       "yamlls",
     })
 
+    local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+    local frame = 0
+
     vim.api.nvim_create_autocmd("LspProgress", {
       callback = function(event)
         local data = event.data
         local params = data.params
         local value = params.value
-        local client = vim.lsp.get_client_by_id(data.client_id)
-        if not client then
+        if value == nil then
           return
         end
 
-        local title = value.title or client.name
-        local message = value.message or title
-        local status = value.kind == "end" and "success" or "running"
+        local percent = value.percentage or 0
+        if percent <= 0 then
+          return
+        end
 
-        vim.api.nvim_echo({ { message } }, false, {
+        frame = (frame % #frames) + 1
+
+        local is_running = value.kind ~= "end" and not (percent > 95 and percent <= 100)
+
+        vim.api.nvim_echo({ { value.title or "LSP" } }, false, {
           id = ("lsp-progress-%s-%s"):format(data.client_id, tostring(params.token)),
           kind = "progress",
-          status = status,
-          percent = value.percentage,
-          title = title,
-          source = client.name,
+          status = is_running and "running" or "success",
+          percent = percent,
+          title = frames[frame] .. " LSP",
+          source = "lsp-progress",
         })
       end,
     })
