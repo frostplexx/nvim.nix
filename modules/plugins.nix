@@ -65,6 +65,15 @@ let
       pname = "blink-cmp";
       data = pkgs.vimPlugins.blink-cmp;
     };
+    "blink-pairs" = {
+      pname = "blink-pairs";
+      data = pkgs.vimPlugins.blink-pairs;
+    };
+    "blink-lib" = {
+      pname = "blink-lib";
+      data = pkgs.vimPlugins.blink-lib;
+      lazy = false;
+    };
   };
 
   # Restricted parser: only a top-level `runtimePackages = { "a", "b" }`
