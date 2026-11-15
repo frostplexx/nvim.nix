@@ -1,4 +1,5 @@
 return {
+    lazy = false,
     after = function()
         -- TODO: Properly set this up
         require("mini.statusline").setup()
@@ -12,7 +13,7 @@ return {
             },
         })
 
-        -- require('mini.statuscolumn').setup()
+        require('mini.statuscolumn').setup()
 
         -- TODO: Figure out how to disable animation
         local indentscope = require("mini.indentscope")
