@@ -41,6 +41,8 @@ return {
                 blink_cmp = {
                     style = 'rounded',
                 },
+
+                render_markdown = true,
                 fzf = true,
                 mini = {
                     enabled = true,
