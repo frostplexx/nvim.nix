@@ -50,6 +50,10 @@
       url = "github:MeanderingProgrammer/render-markdown.nvim";
       flake = false;
     };
+    plugins-nvim-lint = {
+      url = "github:mfussenegger/nvim-lint";
+      flake = false;
+    };
   };
 
   outputs =

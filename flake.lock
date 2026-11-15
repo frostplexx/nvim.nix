@@ -201,6 +201,22 @@
         "type": "github"
       }
     },
+    "plugins-nvim-lint": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793269300,
+        "narHash": "sha256-Q/UqA4DQ242FXcUYYAB7RWQ6RdUkDC57M97k3SWx2Gw=",
+        "owner": "mfussenegger",
+        "repo": "nvim-lint",
+        "rev": "52107ce2076a27a285af781248e2c59bad817cd0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-lint",
+        "type": "github"
+      }
+    },
     "plugins-plenary": {
       "flake": false,
       "locked": {
@@ -276,6 +292,7 @@
         "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lzn": "plugins-lzn",
         "plugins-mini": "plugins-mini",
+        "plugins-nvim-lint": "plugins-nvim-lint",
         "plugins-plenary": "plugins-plenary",
         "plugins-render-markdown": "plugins-render-markdown",
         "plugins-ts-error-translator": "plugins-ts-error-translator",
