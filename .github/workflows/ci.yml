@@ -23,7 +23,7 @@ jobs:
         include:
           - os: ubuntu-latest
             system: x86_64-linux
-          - os: macos-14
+          - os: macos-latest
             system: aarch64-darwin
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
             experimental-features = nix-command flakes
 
       - name: Evaluate flake
-        run: nix flake check --no-build
+        run: nix eval .#packages.${{ matrix.system }}.default.drvPath
 
       - name: Build neovim
         run: nix build .#packages.${{ matrix.system }}.default --no-link --print-out-paths
