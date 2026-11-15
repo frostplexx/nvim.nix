@@ -18,14 +18,19 @@ return {
 
         require('mini.statuscolumn').setup()
         require('mini.git').setup()
-        require('mini.diff').setup()
+        require('mini.diff').setup({
+            view = {
+                style = 'sign',
+                signs = { add = '┃', change = '┃', delete = '_' },
+            },
+        })
         -- TODO: Figure out how to disable animation
         local indentscope = require("mini.indentscope")
         indentscope.setup({
-            delay = 0,
-            animation = function()
-                return indentscope.gen_animation.none()
-            end,
+            draw = {
+                delay = 0,
+                animation = indentscope.gen_animation.none(),
+            },
             symbol = "│",
         })
 
