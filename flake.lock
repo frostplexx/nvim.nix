@@ -105,22 +105,6 @@
         "type": "github"
       }
     },
-    "plugins-conform": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1786458409,
-        "narHash": "sha256-7VkQLpkDak/O5tphT/EWX/rE9r0Dd2UCF5CFbl4rK+A=",
-        "owner": "stevearc",
-        "repo": "conform.nvim",
-        "rev": "016802de402556da54c36bd7359b441266b01cdd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "stevearc",
-        "repo": "conform.nvim",
-        "type": "github"
-      }
-    },
     "plugins-friendly-snippets": {
       "flake": false,
       "locked": {
@@ -286,7 +270,6 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
         "plugins-catppuccin": "plugins-catppuccin",
-        "plugins-conform": "plugins-conform",
         "plugins-friendly-snippets": "plugins-friendly-snippets",
         "plugins-fzf-lua": "plugins-fzf-lua",
         "plugins-lspconfig": "plugins-lspconfig",

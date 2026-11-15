@@ -15,6 +15,7 @@ return {
     "pyright",
     "rust-analyzer",
     "rustc",
+    "rustfmt",
     "typescript-language-server",
     "vscode-css-languageserver",
     "vscode-html-languageserver",
@@ -39,5 +40,9 @@ return {
       "ts_ls",
       "yamlls",
     })
+
+    vim.keymap.set({ "n", "v" }, "<leader>lf", function()
+      vim.lsp.buf.format({ async = true })
+    end, { desc = "Format buffer" })
   end,
 }

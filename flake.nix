@@ -38,10 +38,6 @@
       url = "github:rafamadriz/friendly-snippets";
       flake = false;
     };
-    plugins-conform = {
-      url = "github:stevearc/conform.nvim";
-      flake = false;
-    };
     plugins-ts-error-translator = {
       url = "github:dmmulroy/ts-error-translator.nvim";
       flake = false;
