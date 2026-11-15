@@ -41,6 +41,25 @@ return {
       "yamlls",
     })
 
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "󰅚 ",
+          [vim.diagnostic.severity.WARN] = "󰀪 ",
+          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.HINT] = "",
+        },
+      },
+      virtual_text = {
+        prefix = "",
+        spacing = 2,
+        source = "if_many",
+        format = function(diagnostic)
+          return diagnostic.message
+        end,
+      },
+    })
+
     vim.lsp.inlay_hint.enable(true)
 
     local map = vim.keymap.set
