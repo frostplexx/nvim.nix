@@ -18,8 +18,9 @@ return {
                     vim.wo.winblend = 15
                 end,
                 preview = {
+                    border = "rounded",
                     winopts = {
-                        winblend = 15,
+                        winblend = 0,
                     },
                 },
             },
@@ -27,6 +28,8 @@ return {
                 normal = "Normal",
                 preview_normal = "Normal",
                 help_normal = "Normal",
+                border = "FloatBorder",
+                preview_border = "FloatBorder",
             },
             fzf_colors = {
                 ["bg"] = "-1",
