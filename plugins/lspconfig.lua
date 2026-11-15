@@ -23,6 +23,14 @@ return {
     "yaml-language-server",
   },
   after = function()
+    vim.lsp.config("rust_analyzer", {
+      root_dir = function(bufnr, on_dir)
+        local fname = vim.api.nvim_buf_get_name(bufnr)
+        local root = vim.fs.root(fname, { "Cargo.toml", "rust-project.json" })
+        on_dir(root or vim.fs.dirname(fname))
+      end,
+    })
+
     vim.lsp.enable({
       "bashls",
       "clangd",

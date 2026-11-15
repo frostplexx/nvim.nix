@@ -54,7 +54,7 @@ return {
         documentation = { auto_show = true },
       },
       sources = {
-        default = { "lsp", "path", "buffer", "snippets" },
+        default = { "buffer", "path", "snippets", "lsp" },
         providers = {
           snippets = {
             opts = { friendly_snippets = true },
