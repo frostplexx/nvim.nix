@@ -83,6 +83,12 @@ return {
         set_indent_highlights()
         vim.api.nvim_create_autocmd("ColorScheme", { callback = set_indent_highlights })
 
+        local function set_statusline_highlights()
+            vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { bg = "NONE" })
+        end
+        set_statusline_highlights()
+        vim.api.nvim_create_autocmd("ColorScheme", { callback = set_statusline_highlights })
+
         require("mini.icons").setup()
 
         local hipatterns = require("mini.hipatterns")
