@@ -52,15 +52,26 @@ return {
         require("mini.starter").setup({
             header = function()
                 local version = vim.api.nvim_exec2("version", { output = true }).output:match("NVIM ([^\n]+)")
-                return table.concat({
+                local lines = {
                     "│ ╲ ││",
                     "││╲╲││",
                     "││ ╲ │",
                     "",
                     "NVIM " .. (version or tostring(vim.version())),
-                }, "\n")
+                }
+                local width = 0
+                for _, line in ipairs(lines) do
+                    width = math.max(width, vim.fn.strdisplaywidth(line))
+                end
+                for i, line in ipairs(lines) do
+                    local pad = math.floor((width - vim.fn.strdisplaywidth(line)) / 2)
+                    lines[i] = string.rep(" ", pad) .. line
+                end
+                return table.concat(lines, "\n")
             end,
-            items = {},
+            items = {
+                { name = " ", action = "", section = "" },
+            },
             footer = "",
             content_hooks = {
                 require("mini.starter").gen_hook.aligning("center", "center"),
