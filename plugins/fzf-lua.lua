@@ -15,6 +15,11 @@ return {
             winopts = {
                 backdrop = 100,
             },
+            fzf_colors = {
+                ["bg"] = "-1",
+                ["bg+"] = "-1",
+                ["gutter"] = "-1",
+            },
         })
     end
 }
