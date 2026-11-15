@@ -3,11 +3,14 @@ return {
     after = function()
         require("catppuccin").setup({
             flavour = "mocha", -- latte, frappe, macchiato, mocha
-            background = { -- :h background
+            background = {     -- :h background
                 light = "latte",
                 dark = "mocha",
             },
             transparent_background = true,
+            float = {
+                transparent = true,
+            },
             show_end_of_buffer = false, -- show the '~' characters after the end of buffers
             term_colors = false,
             dim_inactive = {
@@ -16,7 +19,7 @@ return {
                 percentage = 0.15,
             },
             no_italic = false, -- Force no italic
-            no_bold = false, -- Force no bold
+            no_bold = false,   -- Force no bold
             styles = {
                 comments = { "italic" },
                 conditionals = { "italic" },
@@ -35,7 +38,9 @@ return {
             custom_highlights = {},
             auto_integrations = true,
             integrations = {
-                cmp = true,
+                blink_cmp = {
+                    style = 'rounded',
+                },
                 fzf = true,
                 mini = {
                     enabled = true,
