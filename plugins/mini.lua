@@ -55,6 +55,10 @@ return {
                 right = "<S-l>",
                 down = "<S-j>",
                 up = "<S-k>",
+                line_left = "",
+                line_right = "",
+                line_down = "",
+                line_up = "",
             },
         })
 
@@ -90,6 +94,7 @@ return {
         vim.api.nvim_create_autocmd("ColorScheme", { callback = set_statusline_highlights })
 
         require("mini.icons").setup()
+        require("mini.align").setup()
 
         local hipatterns = require("mini.hipatterns")
         hipatterns.setup({

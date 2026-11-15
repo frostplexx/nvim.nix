@@ -27,3 +27,4 @@ end
 
 require('options')
 require('ui')
+require('keymaps')

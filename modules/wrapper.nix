@@ -4,6 +4,7 @@
   wlib,
   inputs,
   options,
+  pkgs,
   ...
 }:
 {
@@ -47,7 +48,14 @@
         '';
       };
     };
-  config.runtimePkgs = config.specCollect (acc: v: acc ++ (v.runtimePkgs or [ ])) [ ];
+  config.runtimePkgs =
+    [ pkgs.man ]
+    ++ config.specCollect (acc: v: acc ++ (v.runtimePkgs or [ ])) [ ];
+
+  config.settings.aliases = [
+    "vi"
+    "vim"
+  ];
 
   config.settings.config_directory = ../.;
 }

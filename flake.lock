@@ -265,6 +265,38 @@
         "type": "github"
       }
     },
+    "plugins-smart-splits": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794586643,
+        "narHash": "sha256-bwMJocb+Duknxy0T4vmV39IJoTPGenIvXuq5smJ0wGU=",
+        "owner": "smart-splits-nvim",
+        "repo": "smart-splits.nvim",
+        "rev": "d3617de050f58e6f1f924b1401fba7677517c196",
+        "type": "github"
+      },
+      "original": {
+        "owner": "smart-splits-nvim",
+        "repo": "smart-splits.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-smart-splits-backend-rex": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793973999,
+        "narHash": "sha256-91iWKOJL+qFPaHEMMNt08SV7xoipMOKqIgZRuZpDs+w=",
+        "owner": "rawnly",
+        "repo": "smart-splits-backend-rex",
+        "rev": "68f54325975ad47b03a968a3f201081bfadc0ff5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rawnly",
+        "repo": "smart-splits-backend-rex",
+        "type": "github"
+      }
+    },
     "plugins-yazi": {
       "flake": false,
       "locked": {
@@ -296,6 +328,8 @@
         "plugins-nvim-lint": "plugins-nvim-lint",
         "plugins-plenary": "plugins-plenary",
         "plugins-render-markdown": "plugins-render-markdown",
+        "plugins-smart-splits": "plugins-smart-splits",
+        "plugins-smart-splits-backend-rex": "plugins-smart-splits-backend-rex",
         "plugins-yazi": "plugins-yazi",
         "wrappers": "wrappers"
       }

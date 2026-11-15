@@ -42,6 +42,14 @@
       url = "github:neovim/nvim-lspconfig";
       flake = false;
     };
+    plugins-smart-splits = {
+      url = "github:smart-splits-nvim/smart-splits.nvim";
+      flake = false;
+    };
+    plugins-smart-splits-backend-rex = {
+      url = "github:rawnly/smart-splits-backend-rex";
+      flake = false;
+    };
     plugins-friendly-snippets = {
       url = "github:rafamadriz/friendly-snippets";
       flake = false;
