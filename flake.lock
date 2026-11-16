@@ -91,22 +91,6 @@
         "type": "github"
       }
     },
-    "plugins-copilot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1794490455,
-        "narHash": "sha256-GIX1mOzsGWsSWLoUBFsTcaQv3zEM1BRhEfBYFq9YsoE=",
-        "owner": "zbirenbaum",
-        "repo": "copilot.lua",
-        "rev": "3547efbff9adeecbd9d431c0a2a8707b7f6a4131",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zbirenbaum",
-        "repo": "copilot.lua",
-        "type": "github"
-      }
-    },
     "plugins-cord": {
       "flake": false,
       "locked": {
@@ -200,6 +184,22 @@
       "original": {
         "owner": "echasnovski",
         "repo": "mini.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-minuet": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791403386,
+        "narHash": "sha256-sS1xMiehg2CeANWGwIdgWlO1zTT2fylVHYMHSdduZF4=",
+        "owner": "milanglacier",
+        "repo": "minuet-ai.nvim",
+        "rev": "50bf63b031c0391e926fdf0b3d044d37846e6e34",
+        "type": "github"
+      },
+      "original": {
+        "owner": "milanglacier",
+        "repo": "minuet-ai.nvim",
         "type": "github"
       }
     },
@@ -304,13 +304,13 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs",
         "plugins-catppuccin": "plugins-catppuccin",
-        "plugins-copilot": "plugins-copilot",
         "plugins-cord": "plugins-cord",
         "plugins-friendly-snippets": "plugins-friendly-snippets",
         "plugins-fzf-lua": "plugins-fzf-lua",
         "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lzn": "plugins-lzn",
         "plugins-mini": "plugins-mini",
+        "plugins-minuet": "plugins-minuet",
         "plugins-nvim-lint": "plugins-nvim-lint",
         "plugins-plenary": "plugins-plenary",
         "plugins-render-markdown": "plugins-render-markdown",

@@ -49,8 +49,14 @@
       };
     };
   config.runtimePkgs =
-    [ pkgs.man ]
+    [
+      pkgs.man
+      pkgs.secretspec
+    ]
     ++ config.specCollect (acc: v: acc ++ (v.runtimePkgs or [ ])) [ ];
+
+  # The API key is resolved lazily from lua (plugins/minuet.lua), which finds
+  # secretspec.toml on the runtimepath.
 
   config.settings.aliases = [
     "vi"

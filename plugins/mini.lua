@@ -3,9 +3,9 @@ return {
     setup = false,
     runtimePackages = {
         "git",
+        "fortune"
     },
     after = function()
-        -- TODO: Properly set this up
         require("mini.statusline").setup({
             content = {
                 active = function()
@@ -37,12 +37,12 @@ return {
                     local fileformat = ({ unix = "", dos = "", mac = "" })[vim.bo.fileformat] or ""
 
                     return MiniStatusline.combine_groups({
-                        { hl = mode_hl, strings = { mode } },
+                        { hl = mode_hl,                 strings = { mode } },
                         { hl = "MiniStatuslineDevinfo", strings = { filetype_icon, filename } },
                         "%<",
                         { hl = "MiniStatuslineFilename", strings = { diff } },
                         "%=",
-                        { hl = "MiniStatuslineDevinfo", strings = { lsp, diagnostics } },
+                        { hl = "MiniStatuslineDevinfo",  strings = { lsp, diagnostics } },
                         { hl = "MiniStatuslineFileinfo", strings = { git, progress, time, fileformat } },
                     })
                 end,
@@ -69,13 +69,12 @@ return {
                 end
                 return table.concat(lines, "\n")
             end,
-            items = {
-                { name = " ", action = "", section = "" },
-            },
+            items = require('mini.starter').sections.builtin_actions(),
             footer = "",
             content_hooks = {
                 require("mini.starter").gen_hook.aligning("center", "center"),
             },
+            silent = true,
         })
 
         require("mini.move").setup({
