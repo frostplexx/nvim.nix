@@ -21,5 +21,6 @@ return {
                 ["gutter"] = "-1",
             },
         })
+        require("fzf-lua").register_ui_select()
     end
 }
