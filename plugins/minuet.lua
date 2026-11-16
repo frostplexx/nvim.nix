@@ -47,7 +47,7 @@ local function resolve_codestral_api_key()
 end
 
 return {
-    event = 'InsertEnter',
+    event = 'BufEnter',
     cmd = { 'MinuetSetApiKey' },
     after = function()
         vim.api.nvim_create_user_command('MinuetSetApiKey', function()
@@ -64,7 +64,6 @@ return {
             warned_missing_key = false
             vim.notify('minuet: CODESTRAL_API_KEY stored', vim.log.levels.INFO)
         end, { desc = 'Store the minuet Codestral API key via secretspec' })
-
         require('minuet').setup {
             enable_predicates = { is_completable_buffer },
             provider_options = {
