@@ -36,7 +36,9 @@ return {
             },
             color_overrides = {},
             custom_highlights = {},
-            auto_integrations = true,
+            -- Integration detection walks the whole runtimepath on every start;
+            -- the list below is explicit instead.
+            auto_integrations = false,
             integrations = {
                 blink_cmp = {
                     style = 'rounded',

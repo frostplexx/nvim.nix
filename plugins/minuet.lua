@@ -1,6 +1,23 @@
 local codestral_api_key
 local warned_missing_key = false
 
+-- Completion is pointless in these buffers and costs a request per keystroke.
+local skip_filetypes = {
+    'help',
+    'fzf',
+    'lazy',
+    'mason',
+    'minifiles',
+    'NvimTree',
+    'oil',
+    'TelescopePrompt',
+    'Yazi',
+}
+
+local function is_completable_buffer()
+    return vim.bo.buftype == '' and not vim.tbl_contains(skip_filetypes, vim.bo.filetype)
+end
+
 local function secretspec_args(...)
     local args = { 'secretspec', ... }
     local manifest = vim.api.nvim_get_runtime_file('secretspec.toml', false)[1]
@@ -49,6 +66,7 @@ return {
         end, { desc = 'Store the minuet Codestral API key via secretspec' })
 
         require('minuet').setup {
+            enable_predicates = { is_completable_buffer },
             provider_options = {
                 codestral = { api_key = resolve_codestral_api_key },
             },

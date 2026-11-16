@@ -77,27 +77,7 @@ return {
             silent = true,
         })
 
-        require("mini.move").setup({
-            mappings = {
-                left = "<S-h>",
-                right = "<S-l>",
-                down = "<S-j>",
-                up = "<S-k>",
-                line_left = "",
-                line_right = "",
-                line_down = "",
-                line_up = "",
-            },
-        })
-
         require('mini.statuscolumn').setup()
-        require('mini.git').setup()
-        require('mini.diff').setup({
-            view = {
-                style = 'sign',
-                signs = { add = '┃', change = '┃', delete = '_' },
-            },
-        })
         -- TODO: Figure out how to disable animation
         local indentscope = require("mini.indentscope")
         indentscope.setup({
@@ -124,21 +104,45 @@ return {
         vim.api.nvim_create_autocmd("ColorScheme", { callback = set_statusline_highlights })
 
         require("mini.icons").setup()
-        require("mini.align").setup()
-        require("mini.bufremove").setup()
+        -- Not needed for the first paint, so keep them off the startup path.
+        vim.schedule(function()
+            require("mini.move").setup({
+                mappings = {
+                    left = "<S-h>",
+                    right = "<S-l>",
+                    down = "<S-j>",
+                    up = "<S-k>",
+                    line_left = "",
+                    line_right = "",
+                    line_down = "",
+                    line_up = "",
+                },
+            })
 
-        local hipatterns = require("mini.hipatterns")
-        hipatterns.setup({
-            highlighters = {
-                -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
-                fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
-                hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
-                todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
-                note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+            require('mini.git').setup()
+            require('mini.diff').setup({
+                view = {
+                    style = 'sign',
+                    signs = { add = '┃', change = '┃', delete = '_' },
+                },
+            })
 
-                -- Highlight hex color strings (`#rrggbb`) using that color
-                hex_color = hipatterns.gen_highlighter.hex_color(),
-            },
-        })
+            require("mini.align").setup()
+            require("mini.bufremove").setup()
+
+            local hipatterns = require("mini.hipatterns")
+            hipatterns.setup({
+                highlighters = {
+                    -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+                    fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+                    hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+                    todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+                    note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+
+                    -- Highlight hex color strings (`#rrggbb`) using that color
+                    hex_color = hipatterns.gen_highlighter.hex_color(),
+                },
+            })
+        end)
     end,
 }
