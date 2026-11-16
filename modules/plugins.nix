@@ -115,15 +115,23 @@ let
           end
           if user_after then user_after() end
         end
-        require("lz.n").load(spec)
+        table.insert(specs, spec)
       end
     '';
 
-  registrations = lib.concatStringsSep "\n" (
-    lib.mapAttrsToList registrationFor (
-      lib.filterAttrs (_: lua: lua != null) (lib.genAttrs pluginNames luaFor)
-    )
-  );
+  # One `lz.n.load` call for every spec: each call re-runs handler init and
+  # post-load hooks, which costs ~1.5ms per plugin.
+  registrations = /* lua */ ''
+    do
+      local specs = {}
+    ${lib.concatStringsSep "\n" (
+      lib.mapAttrsToList registrationFor (
+        lib.filterAttrs (_: lua: lua != null) (lib.genAttrs pluginNames luaFor)
+      )
+    )}
+      require("lz.n").load(specs)
+    end
+  '';
 
   mkSpec =
     name:

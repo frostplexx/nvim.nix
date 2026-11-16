@@ -30,6 +30,8 @@ local function resolve_codestral_api_key()
 end
 
 return {
+    event = 'InsertEnter',
+    cmd = { 'MinuetSetApiKey' },
     after = function()
         vim.api.nvim_create_user_command('MinuetSetApiKey', function()
             local key = vim.fn.inputsecret 'Codestral API key: '
