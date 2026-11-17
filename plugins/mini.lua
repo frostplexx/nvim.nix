@@ -11,39 +11,41 @@ return {
                 active = function()
                     local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = math.huge })
 
-                    local git = MiniStatusline.section_git({ trunc_width = 40, icon = "•" })
-                    local diff = MiniStatusline.section_diff({ trunc_width = 75 })
-                    local diagnostics = MiniStatusline.section_diagnostics({
+                    local git           = MiniStatusline.section_git({ trunc_width = 40 })
+                    local diagnostics   = MiniStatusline.section_diagnostics({
                         trunc_width = 75,
                         icon = "",
                         signs = { ERROR = "󰅙", WARN = "", INFO = "", HINT = "󰌵" },
                     })
 
-                    local clients = vim.lsp.get_clients({ bufnr = 0 })
-                    local lsp = ""
+                    local clients       = vim.lsp.get_clients({ bufnr = 0 })
+                    local lsp           = ""
                     if #clients > 0 then
                         local names = {}
                         for _, client in ipairs(clients) do
                             names[#names + 1] = client.name
                         end
-                        lsp = " " .. table.concat(names, ", ")
+                        lsp = "  [" .. table.concat(names, ", ") .. "]"
                     end
 
-                    local filetype_icon = require("mini.icons").get("filetype", vim.bo.filetype)
-                    local filename = "%t%m%r"
+                    local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
 
-                    local progress = math.floor(vim.fn.line(".") / math.max(1, vim.fn.line("$")) * 100) .. "%%"
-                    local time = os.date("%H:%M")
-                    local fileformat = ({ unix = "", dos = "", mac = "" })[vim.bo.fileformat] or ""
+                    local filetype_icon = require("mini.icons").get("filetype", vim.bo.filetype)
+                    local filename      = "%t%m%r"
+                    local location      = MiniStatusline.section_location({ trunc_width = 75 })
+
+                    local progress      = math.floor(vim.fn.line(".") / math.max(1, vim.fn.line("$")) * 100) .. "%%"
 
                     return MiniStatusline.combine_groups({
                         { hl = mode_hl,                 strings = { mode } },
-                        { hl = "MiniStatuslineDevinfo", strings = { filetype_icon, filename } },
+                        { hl = "MiniStatuslineDevinfo", strings = { git, filetype_icon, filename, } },
                         "%<",
-                        { hl = "MiniStatuslineFilename", strings = { diff } },
+                        { hl = "MiniStatuslineFilename", strings = { " " } },
                         "%=",
-                        { hl = "MiniStatuslineDevinfo",  strings = { lsp, diagnostics } },
-                        { hl = "MiniStatuslineFileinfo", strings = { git, progress, time, fileformat } },
+                        { hl = "MiniStatuslineFilename", strings = { search, diagnostics } },
+                        "%=",
+                        { hl = "MiniStatuslineDevinfo",  strings = { lsp } },
+                        { hl = "MiniStatuslineFileinfo", strings = { progress, location } },
                     })
                 end,
             },
