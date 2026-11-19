@@ -52,12 +52,20 @@ return {
           auto_show = true,
         },
         documentation = { auto_show = true },
+        trigger = { prefetch_on_insert = false },
       },
       sources = {
-        default = { "buffer", "path", "snippets", "lsp" },
+        default = { "lsp", "path", "buffer", "snippets", "minuet" },
         providers = {
           snippets = {
             opts = { friendly_snippets = true },
+          },
+          minuet = {
+            name = "minuet",
+            module = "minuet.blink",
+            async = true,
+            timeout_ms = 3000,
+            score_offset = 50,
           },
         },
       },
