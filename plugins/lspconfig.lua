@@ -11,7 +11,8 @@ return {
     "just-lsp",
     "lua-language-server",
     "marksman",
-    "nil",
+    "nixd",
+    "nixfmt-rfc-style",
     "pyright",
     "rust-analyzer",
     "rustc",
@@ -31,6 +32,32 @@ return {
       end,
     })
 
+    local flake = "(builtins.getFlake (toString ./.))"
+    local function firstConfigurationOptions(attribute)
+      return "let f = "
+        .. flake
+        .. "; s = f."
+        .. attribute
+        .. " or null; in if s == null || builtins.attrNames s == [ ] then { } else builtins.head (builtins.map (name: s.${name}.options) (builtins.attrNames s))"
+    end
+
+    vim.lsp.config("nixd", {
+      settings = {
+        nixd = {
+          nixpkgs = {
+            expr = "import " .. flake .. ".inputs.nixpkgs { }",
+          },
+          formatting = {
+            command = { "nixfmt" },
+          },
+          options = {
+            nixos = { expr = firstConfigurationOptions("nixosConfigurations") },
+            home_manager = { expr = firstConfigurationOptions("homeConfigurations") },
+          },
+        },
+      },
+    })
+
     vim.lsp.enable({
       "bashls",
       "clangd",
@@ -42,7 +69,7 @@ return {
       "just",
       "lua_ls",
       "marksman",
-      "nil_ls",
+      "nixd",
       "pyright",
       "rust_analyzer",
       "ts_ls",
