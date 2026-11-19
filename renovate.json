@@ -1,6 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", ":dependencyDashboard"],
+  "automerge": true,
+  "platformAutomerge": true,
   "nix": {
     "enabled": true
   },
