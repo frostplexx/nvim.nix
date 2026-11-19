@@ -12,7 +12,7 @@ return {
     "lua-language-server",
     "marksman",
     "nixd",
-    "nixfmt-rfc-style",
+    "nixfmt",
     "pyright",
     "rust-analyzer",
     "rustc",
