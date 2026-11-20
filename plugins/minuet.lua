@@ -67,7 +67,10 @@ return {
         require('minuet').setup {
             enable_predicates = { is_completable_buffer },
             provider_options = {
-                codestral = { api_key = resolve_codestral_api_key },
+                codestral = {
+                    model = 'codestral-2508',
+                    api_key = resolve_codestral_api_key,
+                },
             },
         }
     end
