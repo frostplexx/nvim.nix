@@ -8,164 +8,26 @@ return {
         "fd",
     },
     after = function()
-        require("mini.statusline").setup({
-            content = {
-                active = function()
-                    local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = math.huge })
+        local config_dir = vim.fn.stdpath("config")
+        local nix_config_dir = _G.nixInfo and _G.nixInfo(nil, "settings", "config_directory")
+        if nix_config_dir then config_dir = nix_config_dir end
 
-                    local git           = MiniStatusline.section_git({ trunc_width = 40 })
-                    local diagnostics   = MiniStatusline.section_diagnostics({
-                        trunc_width = 75,
-                        icon = "",
-                        signs = { ERROR = "󰅙", WARN = "", INFO = "", HINT = "󰌵" },
-                    })
-
-                    local clients       = vim.lsp.get_clients({ bufnr = 0 })
-                    local lsp           = ""
-                    if #clients > 0 then
-                        local names = {}
-                        for _, client in ipairs(clients) do
-                            names[#names + 1] = client.name
-                        end
-                        lsp = "  [" .. table.concat(names, ", ") .. "]"
-                    end
-
-                    local search        = MiniStatusline.section_searchcount({ trunc_width = 75 })
-
-                    local filetype_icon = require("mini.icons").get("filetype", vim.bo.filetype)
-                    local filename      = "%t%m%r"
-                    local location      = MiniStatusline.section_location({ trunc_width = 75 })
-
-                    local progress      = math.floor(vim.fn.line(".") / math.max(1, vim.fn.line("$")) * 100) .. "%%"
-
-                    return MiniStatusline.combine_groups({
-                        { hl = mode_hl,                 strings = { mode } },
-                        { hl = "MiniStatuslineDevinfo", strings = { git, filetype_icon, filename, } },
-                        "%<",
-                        { hl = "MiniStatuslineFilename", strings = { " " } },
-                        "%=",
-                        { hl = "MiniStatuslineFilename", strings = { search, diagnostics } },
-                        "%=",
-                        { hl = "MiniStatuslineDevinfo",  strings = { lsp } },
-                        { hl = "MiniStatuslineFileinfo", strings = { progress, location } },
-                    })
-                end,
-            },
-        })
-
-        require("mini.starter").setup({
-            header = function()
-                local version = vim.api.nvim_exec2("version", { output = true }).output:match("NVIM ([^\n]+)")
-                local lines = {
-                    "│ ╲ ││",
-                    "││╲╲││",
-                    "││ ╲ │",
-                    "",
-                    "NVIM " .. (version or tostring(vim.version())),
-                }
-                local width = 0
-                for _, line in ipairs(lines) do
-                    width = math.max(width, vim.fn.strdisplaywidth(line))
-                end
-                for i, line in ipairs(lines) do
-                    local pad = math.floor((width - vim.fn.strdisplaywidth(line)) / 2)
-                    lines[i] = string.rep(" ", pad) .. line
-                end
-                return table.concat(lines, "\n")
-            end,
-            items = require('mini.starter').sections.builtin_actions(),
-            footer = "",
-            content_hooks = {
-                require("mini.starter").gen_hook.aligning("center", "center"),
-            },
-            silent = true,
-        })
-
-        require('mini.statuscolumn').setup()
-        -- TODO: Figure out how to disable animation
-        local indentscope = require("mini.indentscope")
-        indentscope.setup({
-            draw = {
-                delay = 0,
-                animation = indentscope.gen_animation.none(),
-            },
-            symbol = "│",
-        })
-
-        local function set_indent_highlights()
-            vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#585b70" })
-            vim.api.nvim_set_hl(0, "MiniIndentscopeSymbolOff", { fg = "#313244" })
+        local function setup(name)
+            dofile(config_dir .. "/plugins/mini/" .. name .. ".lua")()
         end
-        set_indent_highlights()
-        vim.api.nvim_create_autocmd("ColorScheme", { callback = set_indent_highlights })
 
-        local function set_statusline_highlights()
-            vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { bg = "NONE" })
-            local inactive = vim.api.nvim_get_hl(0, { name = "MiniStatuslineInactive" })
-            vim.api.nvim_set_hl(0, "MiniStatuslineInactive", { fg = inactive.fg, bg = "NONE" })
-        end
-        set_statusline_highlights()
-        vim.api.nvim_create_autocmd("ColorScheme", { callback = set_statusline_highlights })
-
-        require("mini.icons").setup()
-
-        local pick = require("mini.pick")
-        pick.setup()
-        vim.ui.select = pick.ui_select
-        require("mini.visits").setup()
-
-        local map = vim.keymap.set
-        map("n", "<leader>f", function() pick.builtin.files() end, { desc = "Find files" })
-        map("n", "<leader>F", function() pick.builtin.grep_live() end, { desc = "Live grep" })
-        map("n", "<leader>pg", function() pick.builtin.grep() end, { desc = "Grep" })
-        map("n", "<leader>pb", function() pick.builtin.buffers() end, { desc = "Buffers" })
-        map("n", "<leader>ph", function() pick.builtin.help() end, { desc = "Help" })
-        map("n", "<leader>pc", function() require("mini.extra").pickers.commands() end, { desc = "Commands" })
-        map("n", "<leader>pk", function() require("mini.extra").pickers.keymaps() end, { desc = "Keymaps" })
-        map("n", "<leader>po", function() require("mini.extra").pickers.oldfiles() end, { desc = "Old files" })
-        map("n", "<leader>pv", function() require("mini.extra").pickers.visit_paths() end, { desc = "Frecency visits" })
-        map("n", "<leader>pR", function() pick.builtin.resume() end, { desc = "Resume picker" })
-        map("n", "<leader>pd", function() require("mini.extra").pickers.diagnostic() end, { desc = "Diagnostics" })
+        setup("statusline")
+        setup("starter")
+        setup("statuscolumn")
+        setup("indentscope")
+        setup("icons")
+        setup("picker")
 
         -- Not needed for the first paint, so keep them off the startup path.
         vim.schedule(function()
-            require("mini.move").setup({
-                mappings = {
-                    left = "<S-h>",
-                    right = "<S-l>",
-                    down = "<S-j>",
-                    up = "<S-k>",
-                    line_left = "",
-                    line_right = "",
-                    line_down = "",
-                    line_up = "",
-                },
-            })
-
-            require('mini.git').setup()
-            require('mini.diff').setup({
-                view = {
-                    style = 'sign',
-                    signs = { add = '┃', change = '┃', delete = '_' },
-                },
-            })
-
-            require("mini.align").setup()
-            require("mini.bufremove").setup()
-
-            local hipatterns = require("mini.hipatterns")
-            hipatterns.setup({
-                highlighters = {
-                    -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
-                    fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
-                    hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
-                    todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
-                    note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
-
-                    -- Highlight hex color strings (`#rrggbb`) using that color
-                    hex_color = hipatterns.gen_highlighter.hex_color(),
-                },
-            })
+            setup("editing")
+            setup("git")
+            setup("hipatterns")
         end)
     end,
 }

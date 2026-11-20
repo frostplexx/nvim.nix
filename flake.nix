@@ -33,10 +33,6 @@
       url = "github:mikavilpas/yazi.nvim";
       flake = false;
     };
-    plugins-fzf-lua = {
-      url = "github:ibhagwan/fzf-lua";
-      flake = false;
-    };
     plugins-mini = {
       url = "github:echasnovski/mini.nvim";
       flake = false;
@@ -44,6 +40,9 @@
     plugins-mini-extra = {
       url = "github:echasnovski/mini.extra";
       flake = false;
+    };
+    plugins-fff = {
+      url = "github:dmtrKovalenko/fff";
     };
     plugins-lspconfig = {
       url = "github:neovim/nvim-lspconfig";

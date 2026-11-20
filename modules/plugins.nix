@@ -74,6 +74,10 @@ let
       data = pkgs.vimPlugins.blink-lib;
       lazy = false;
     };
+    fff = {
+      pname = "fff";
+      data = inputs.plugins-fff.packages.${pkgs.stdenv.hostPlatform.system}.fff-nvim;
+    };
   };
 
   # Restricted parser: only a top-level `runtimePackages = { "a", "b" }`
