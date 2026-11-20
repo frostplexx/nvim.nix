@@ -245,11 +245,11 @@
     "plugins-mini": {
       "flake": false,
       "locked": {
-        "lastModified": 1795089883,
-        "narHash": "sha256-xPdaaPaIYftmeQkblyl+lKh8RkngZ54TbQCm9WGYhM8=",
+        "lastModified": 1795176650,
+        "narHash": "sha256-sJCO3GDxcM9krp5AzN+gvK/ICZ3mDj51hb5zYRI4cRM=",
         "owner": "echasnovski",
         "repo": "mini.nvim",
-        "rev": "22619434ccca787cdb34406c97f0e395d4debadc",
+        "rev": "b8a0af521530f8ee68c738657429eab59de6a2ae",
         "type": "github"
       },
       "original": {
@@ -261,11 +261,11 @@
     "plugins-mini-extra": {
       "flake": false,
       "locked": {
-        "lastModified": 1794572888,
-        "narHash": "sha256-hbWVS0c6HFxq87T5FwYDDkSlwqHbH/QLT5ynFO7obK0=",
+        "lastModified": 1795178954,
+        "narHash": "sha256-Hq/1fiLG2zii92rHqgcgxT2+o0baFMANpwWVmsKH9+I=",
         "owner": "echasnovski",
         "repo": "mini.extra",
-        "rev": "8ed483ebaea4610c4b5e7b0fcc28854225946ddd",
+        "rev": "4384356a18a230de6f4c930a8fc720085c3fa0df",
         "type": "github"
       },
       "original": {
@@ -341,11 +341,11 @@
     "plugins-smart-splits": {
       "flake": false,
       "locked": {
-        "lastModified": 1794586643,
-        "narHash": "sha256-bwMJocb+Duknxy0T4vmV39IJoTPGenIvXuq5smJ0wGU=",
+        "lastModified": 1795191479,
+        "narHash": "sha256-5lQvMoA2RcQYEEsxuS6Fqs8WAFP4wr1kLol0d9zVtns=",
         "owner": "smart-splits-nvim",
         "repo": "smart-splits.nvim",
-        "rev": "d3617de050f58e6f1f924b1401fba7677517c196",
+        "rev": "e96b23e4ce660c95133f0080a6e488b96644ec0c",
         "type": "github"
       },
       "original": {
