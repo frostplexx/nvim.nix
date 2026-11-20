@@ -1,4 +1,5 @@
 return {
+    enabled = false,
     runtimePackages = {
         "fzf",
         "ripgrep",

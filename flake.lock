@@ -187,6 +187,22 @@
         "type": "github"
       }
     },
+    "plugins-mini-extra": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794572888,
+        "narHash": "sha256-hbWVS0c6HFxq87T5FwYDDkSlwqHbH/QLT5ynFO7obK0=",
+        "owner": "echasnovski",
+        "repo": "mini.extra",
+        "rev": "8ed483ebaea4610c4b5e7b0fcc28854225946ddd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "echasnovski",
+        "repo": "mini.extra",
+        "type": "github"
+      }
+    },
     "plugins-minuet": {
       "flake": false,
       "locked": {
@@ -310,6 +326,7 @@
         "plugins-lspconfig": "plugins-lspconfig",
         "plugins-lzn": "plugins-lzn",
         "plugins-mini": "plugins-mini",
+        "plugins-mini-extra": "plugins-mini-extra",
         "plugins-minuet": "plugins-minuet",
         "plugins-nvim-lint": "plugins-nvim-lint",
         "plugins-plenary": "plugins-plenary",

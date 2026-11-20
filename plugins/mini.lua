@@ -3,7 +3,9 @@ return {
     setup = false,
     runtimePackages = {
         "git",
-        "fortune"
+        "fortune",
+        "ripgrep",
+        "fd",
     },
     after = function()
         require("mini.statusline").setup({
@@ -106,6 +108,25 @@ return {
         vim.api.nvim_create_autocmd("ColorScheme", { callback = set_statusline_highlights })
 
         require("mini.icons").setup()
+
+        local pick = require("mini.pick")
+        pick.setup()
+        vim.ui.select = pick.ui_select
+        require("mini.visits").setup()
+
+        local map = vim.keymap.set
+        map("n", "<leader>f", function() pick.builtin.files() end, { desc = "Find files" })
+        map("n", "<leader>F", function() pick.builtin.grep_live() end, { desc = "Live grep" })
+        map("n", "<leader>pg", function() pick.builtin.grep() end, { desc = "Grep" })
+        map("n", "<leader>pb", function() pick.builtin.buffers() end, { desc = "Buffers" })
+        map("n", "<leader>ph", function() pick.builtin.help() end, { desc = "Help" })
+        map("n", "<leader>pc", function() require("mini.extra").pickers.commands() end, { desc = "Commands" })
+        map("n", "<leader>pk", function() require("mini.extra").pickers.keymaps() end, { desc = "Keymaps" })
+        map("n", "<leader>po", function() require("mini.extra").pickers.oldfiles() end, { desc = "Old files" })
+        map("n", "<leader>pv", function() require("mini.extra").pickers.visit_paths() end, { desc = "Frecency visits" })
+        map("n", "<leader>pR", function() pick.builtin.resume() end, { desc = "Resume picker" })
+        map("n", "<leader>pd", function() require("mini.extra").pickers.diagnostic() end, { desc = "Diagnostics" })
+
         -- Not needed for the first paint, so keep them off the startup path.
         vim.schedule(function()
             require("mini.move").setup({

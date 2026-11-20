@@ -41,6 +41,10 @@
       url = "github:echasnovski/mini.nvim";
       flake = false;
     };
+    plugins-mini-extra = {
+      url = "github:echasnovski/mini.extra";
+      flake = false;
+    };
     plugins-lspconfig = {
       url = "github:neovim/nvim-lspconfig";
       flake = false;
