@@ -41,3 +41,6 @@ map("n", "<leader>u", function()
   vim.cmd("packadd nvim.undotree")
   require("undotree").toggle()
 end, { desc = "Toggle undotree" })
+
+
+map('n', '<C-n>', 'Qn')
