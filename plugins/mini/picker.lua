@@ -1,6 +1,10 @@
 return function()
     local pick = require("mini.pick")
     pick.setup({
+        mappings = {
+            -- Mark items with <C-x>, then send them to the quickfix list.
+            choose_marked = "<C-q>",
+        },
         window = {
             config = function()
                 local width = math.min(100, math.floor(0.618 * vim.o.columns))
