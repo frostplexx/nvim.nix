@@ -6,9 +6,9 @@ map("n", "<C-j>", function() require("smart-splits").move_cursor_down() end, { d
 map("n", "<C-k>", function() require("smart-splits").move_cursor_up() end, { desc = "Move up" })
 map("n", "<C-l>", function() require("smart-splits").move_cursor_right() end, { desc = "Move right" })
 map("n", "<leader>mc", function()
-  local ns = vim.api.nvim_create_namespace("nvim.multicursor")
-  vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
-  vim.cmd("normal! <C-l>")
+    local ns = vim.api.nvim_create_namespace("nvim.multicursor")
+    vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+    vim.cmd("normal! <C-l>")
 end, { desc = "Clear multicursors" })
 map("n", "<A-h>", function() require("smart-splits").resize_left() end, { desc = "Resize left" })
 map("n", "<A-j>", function() require("smart-splits").resize_down() end, { desc = "Resize down" })
@@ -33,19 +33,36 @@ map("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "New tab" })
 map("n", "<leader>tx", "<cmd>tabclose<cr>", { desc = "Close tab" })
 map("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Close other tabs" })
 for i = 1, 9 do
-  map("n", "<A-" .. i .. ">", "<cmd>tabnext " .. i .. "<cr>", { desc = "Go to tab " .. i })
+    map("n", "<A-" .. i .. ">", "<cmd>tabnext " .. i .. "<cr>", { desc = "Go to tab " .. i })
 end
 
 map("v", "<leader>s", 'y:%s/<C-r>"//gc<Left><Left><Left>', { desc = "Search and replace selected text" })
 
 map("n", "<leader>db", function()
-  require("mini.bufremove").delete(0, false)
+    require("mini.bufremove").delete(0, false)
 end, { desc = "Delete buffer" })
 
 map("n", "<leader>u", function()
-  vim.cmd("packadd nvim.undotree")
-  require("undotree").toggle()
+    vim.cmd("packadd nvim.undotree")
+    require("undotree").toggle()
 end, { desc = "Toggle undotree" })
 
 
 map('n', '<C-n>', 'Qn')
+
+-- pi
+map("n", "<leader>cb", function()
+    require("pi").send_buffer()
+end, { desc = "Send buffer to pi" })
+
+
+map("v", "<leader>cs", function()
+    require("pi").send_selected_text()
+end, { desc = "Send selection to pi" })
+
+
+map("v", "<leader>cp", function()
+    require("pi").talk_to_pi()
+end, { desc = "Send selection to pi" })
+
+

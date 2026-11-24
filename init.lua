@@ -28,3 +28,4 @@ end
 require('options')
 require('ui')
 require('keymaps')
+require('pi')
