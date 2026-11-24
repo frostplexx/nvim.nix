@@ -370,22 +370,6 @@
         "type": "github"
       }
     },
-    "plugins-vectorcode": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1766743807,
-        "narHash": "sha256-/nxadVYrtW3vBxGFAHkbKUj0F6PTED4PoRtx9Cjf4No=",
-        "owner": "Davidyz",
-        "repo": "VectorCode",
-        "rev": "3eacce5ad1c8e439e7dbeab3a8d6bdb6b8aa1cab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Davidyz",
-        "repo": "VectorCode",
-        "type": "github"
-      }
-    },
     "plugins-yazi": {
       "flake": false,
       "locked": {
