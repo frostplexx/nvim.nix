@@ -370,6 +370,22 @@
         "type": "github"
       }
     },
+    "plugins-vectorcode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766743807,
+        "narHash": "sha256-/nxadVYrtW3vBxGFAHkbKUj0F6PTED4PoRtx9Cjf4No=",
+        "owner": "Davidyz",
+        "repo": "VectorCode",
+        "rev": "3eacce5ad1c8e439e7dbeab3a8d6bdb6b8aa1cab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Davidyz",
+        "repo": "VectorCode",
+        "type": "github"
+      }
+    },
     "plugins-yazi": {
       "flake": false,
       "locked": {
@@ -404,6 +420,7 @@
         "plugins-render-markdown": "plugins-render-markdown",
         "plugins-smart-splits": "plugins-smart-splits",
         "plugins-smart-splits-backend-rex": "plugins-smart-splits-backend-rex",
+        "plugins-vectorcode": "plugins-vectorcode",
         "plugins-yazi": "plugins-yazi",
         "wrappers": "wrappers"
       }

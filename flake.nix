@@ -13,6 +13,10 @@
       url = "github:lumen-oss/lz.n";
       flake = false;
     };
+    plugins-vectorcode = {
+        url = "github:Davidyz/VectorCode";
+        flake = false;
+    };
     plugins-cord = {
       url = "github:vyfor/cord.nvim";
       flake = false;
