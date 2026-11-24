@@ -5,7 +5,7 @@ return {
     require("blink.cmp").setup {
       keymap = {
         preset = "none",
-        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-w>"] = { "show", "show_documentation", "hide_documentation" },
         ["<C-e>"] = { "hide", "fallback" },
         ["<Tab>"] = {
           function(cmp)
@@ -32,7 +32,7 @@ return {
           preset = "none",
           ["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
           ["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
-          ["<C-space>"] = { "show", "fallback" },
+          ["<C-w>"] = { "show", "fallback" },
           ["<C-n>"] = { "select_next", "fallback" },
           ["<C-p>"] = { "select_prev", "fallback" },
           ["<Right>"] = { "select_next", "fallback" },
