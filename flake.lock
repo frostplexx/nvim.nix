@@ -404,7 +404,6 @@
         "plugins-render-markdown": "plugins-render-markdown",
         "plugins-smart-splits": "plugins-smart-splits",
         "plugins-smart-splits-backend-rex": "plugins-smart-splits-backend-rex",
-        "plugins-vectorcode": "plugins-vectorcode",
         "plugins-yazi": "plugins-yazi",
         "wrappers": "wrappers"
       }
