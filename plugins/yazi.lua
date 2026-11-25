@@ -7,4 +7,8 @@ return {
   keys = {
     { "<leader>e", "<cmd>Yazi<cr>", desc = "Open Yazi" },
   },
+  after = function()
+    -- macOS default is Homebrew `grealpath`; use the system `realpath` instead.
+    require("yazi").config.integrations.resolve_relative_path_application = "realpath"
+  end,
 }
