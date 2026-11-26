@@ -16,12 +16,14 @@ return {
             dofile(config_dir .. "/plugins/mini/" .. name .. ".lua")()
         end
 
+
         setup("statusline")
         setup("starter")
         setup("statuscolumn")
         setup("indentscope")
         setup("icons")
         setup("picker")
+        setup("sessions")
 
         -- Not needed for the first paint, so keep them off the startup path.
         vim.schedule(function()
