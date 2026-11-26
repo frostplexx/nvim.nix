@@ -6,7 +6,6 @@ return {
             -- LLM Provider icons
             claude = '󰋦',
             openai = '󱢆',
-            codestral = '󱎥',
             gemini = '',
             Groq = '',
             Openrouter = '󱂇',
@@ -68,16 +67,15 @@ return {
                 trigger = { prefetch_on_insert = false },
             },
             sources = {
-                default = { "lsp", "path", "buffer", "snippets", "minuet" },
+                default = { "lsp", "path", "buffer", "snippets", "copilot" },
                 providers = {
                     snippets = {
                         opts = { friendly_snippets = true },
                     },
-                    minuet = {
-                        name = "minuet",
-                        module = "minuet.blink",
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-copilot",
                         async = true,
-                        timeout_ms = 3000,
                         score_offset = 50,
                     },
                 },

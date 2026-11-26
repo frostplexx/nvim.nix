@@ -17,8 +17,12 @@
       url = "github:vyfor/cord.nvim";
       flake = false;
     };
-    plugins-minuet = {
-      url = "github:milanglacier/minuet-ai.nvim";
+    plugins-copilot = {
+      url = "github:zbirenbaum/copilot.lua";
+      flake = false;
+    };
+    plugins-blink-copilot = {
+      url = "github:fang2hou/blink-copilot";
       flake = false;
     };
     plugins-plenary = {
